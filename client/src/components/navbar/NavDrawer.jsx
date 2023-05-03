@@ -2,24 +2,17 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import DehazeIcon from "@mui/icons-material/Dehaze";
 import CloseIcon from "@mui/icons-material/Close";
+import { Stack, Typography } from "@mui/material";
+import { useNavigate } from "react-router";
+import routes from "./routesData";
 export default function NavDrawer() {
   const [state, setState] = React.useState({
-    top: false,
     left: false,
-    bottom: false,
     right: false,
   });
-
+  const navigate = useNavigate();
   const toggleDrawer = (anchor, open) => (event) => {
     if (
       event.type === "keydown" &&
@@ -30,46 +23,11 @@ export default function NavDrawer() {
 
     setState({ ...state, [anchor]: open });
   };
-
-  const list = (anchor) => (
-    <Box
-      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
   const lang = "ar";
-  const dirDrawer = lang === "en" ? "right" : "left";
+  const dirDrawer = lang === "en" ? "left" : "right";
   return (
     <div>
-      <Button onClick={toggleDrawer(dirDrawer, true)}>
+      <Button sx={{ minWidth: 0 }} onClick={toggleDrawer(dirDrawer, true)}>
         {!state[dirDrawer] ? (
           <DehazeIcon sx={{ color: "#fff" }} />
         ) : (
@@ -81,7 +39,38 @@ export default function NavDrawer() {
         open={state[dirDrawer]}
         onClose={toggleDrawer(dirDrawer, false)}
       >
-        {list(dirDrawer)}
+        <Box
+          sx={{
+            width: 250,
+            p: 2,
+            pt: 5,
+          }}
+          role="presentation"
+          onClick={toggleDrawer(dirDrawer, false)}
+          onKeyDown={toggleDrawer(dirDrawer, false)}
+        >
+          {routes(lang).map((route) => (
+            <Stack
+              direction="row"
+              alignItems="center"
+              sx={{
+                width: 0.75,
+                mx: "auto",
+                py: 1,
+                border: 1,
+                borderColor: "divider",
+                cursor: "pointer",
+                mt: "20px",
+              }}
+              onClick={() => navigate(route.path)}
+            >
+              {route.icon}
+              <Typography component="span" fontWeight={"bold"}>
+                {route.title}
+              </Typography>
+            </Stack>
+          ))}
+        </Box>
       </Drawer>
     </div>
   );
