@@ -11,9 +11,9 @@ const App = () => {
       fontFamily: ["'Tajawal', sans-serif"],
     },
   });
-  const lang = "ar";
+  const lang = "en";
   const selector = useSelector((state) => state);
-  console.log("selector", selector);
+
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>

@@ -1,15 +1,16 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import languageSlice from "./slices/langSlice";
-const RootReducer = combineReducers({
-  language: languageSlice,
-});
+import productsApi from "./api/prodcuctsApi";
 
-const Store = configureStore({
+const RootReducer = combineReducers({
+  [productsApi.reducerPath]: productsApi.reducer,
+});
+const store = configureStore({
   reducer: RootReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
+  middleware: (getDefaultMiddleware) => {
+    return getDefaultMiddleware({
       immutableCheck: false,
       serializableCheck: false,
-    }).concat(),
+    }).concat(productsApi.middleware);
+  },
 });
-export default Store;
+export default store;
