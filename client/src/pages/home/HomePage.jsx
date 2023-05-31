@@ -1,15 +1,12 @@
 import React from "react";
-import { Box, Typography, styled } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import CustomSlider from "../../components/slider/Slider";
-import { useGetAllProductsQuery } from "../../rtkQuery/api/prodcuctsApi";
 const HomePage = () => {
-  const data = useGetAllProductsQuery();
-  console.log("QQQQQQQQ",data)
+  const lang = "en";
   return (
     <Box>
       <Box
         sx={{
-          // border: "1px solid red",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -18,9 +15,9 @@ const HomePage = () => {
       >
         <Typography variant="h1">hero section</Typography>
       </Box>
-      <CustomSlider title={"Cats"} />
-      <CustomSlider title={"Cats"} />
-      <CustomSlider title={"Cats"} />
+      <CustomSlider title={ lang === "en" ? "Phones" : "هواتف" } cetegory={"phones"} />
+      <CustomSlider title={ lang === "en" ? "Headphones" : "سماعات" } category={"headphones"} />
+      <CustomSlider title={ lang === "en" ? "Shoes" : "أحذية" } category={"shoes"} />
     </Box>
   );
 };

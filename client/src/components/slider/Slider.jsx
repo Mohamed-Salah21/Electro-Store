@@ -1,30 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Splide, SplideTrack, SplideSlide } from "@splidejs/react-splide";
 import { Box, Typography, styled } from "@mui/material";
+import { useLazyFetchProductsQuery } from "../../rtkQuery/api/prodcuctsApi";
 
-const CustomSlider = (props) => {
+const CustomSlider = ({ title, cetegory }) => {
   const StyledBox = styled(Box)({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     height: "40vh",
   });
-  const names = [
-    "ahmed",
-    "khaled",
-    "alaa",
-    "mohamed",
-    "lamaa",
-    "yehya",
-    "hassan",
-    "nabel",
-    "hamsa",
-    "ali",
-    "mahmoud",
-    "khaled",
-    "bassam",
-    "ali",
-  ];
+
+  const [products, setProducts] = useState([]);
+  const [fetchProducts] = useLazyFetchProductsQuery();
+  useEffect(() => {
+    fetchProducts(cetegory).then(({ data }) =>
+      data ? setProducts(data?.products) : undefined
+    );
+  }, []);
+
   return (
     <Box
       sx={{
@@ -38,7 +32,7 @@ const CustomSlider = (props) => {
       }}
     >
       <Typography align="center" fontWeight={"bold"} variant="h3">
-        {props.title}
+        {title}
       </Typography>
       <Splide
         hasTrack={false}
@@ -76,10 +70,10 @@ const CustomSlider = (props) => {
         }}
       >
         <SplideTrack>
-          {names?.map((name) => (
+          {products?.map((product) => (
             <SplideSlide>
               <StyledBox>
-                <Typography variant="h3">{name}</Typography>
+                <Typography variant="h3">{product.title}</Typography>
               </StyledBox>
             </SplideSlide>
           ))}

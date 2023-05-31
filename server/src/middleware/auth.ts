@@ -4,15 +4,11 @@ import { UserI, User } from "../models/user.model";
 export interface AuthenticatedRequest extends Request {
   user?: UserI | any;
 }
-export const checkAuth = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const checkAuth = async (req: Request, res: Response, next: NextFunction) => {
   const token: string | undefined = req.header("Authentication");
   if (!token) {
     return res.status(401).send({
-      error: "Sorry You are not authenticated!",
+      error: "Not Authenticated",
     });
   }
   try {
@@ -22,8 +18,8 @@ export const checkAuth = async (
     );
     (req as AuthenticatedRequest).user = await User.findById(decodeToken._id);
     next();
-  } catch (error) {
-    return res.status(400).send({
+  } catch (e) {
+    return res.status(401).send({
       error: "Invalid token",
     });
   }

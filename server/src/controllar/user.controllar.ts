@@ -1,9 +1,5 @@
 import { Request, Response } from "express";
-import {
-  User,
-  validateUpdateUser,
-  validateUserFields,
-} from "../models/user.model";
+import { User, validateUserFields } from "../models/user.model";
 import { hashSync, compareSync } from "bcrypt";
 import { AuthenticatedRequest } from "../middleware/auth";
 import jwt from "jsonwebtoken";
@@ -55,19 +51,20 @@ export const loginUser = async (req: Request, res: Response) => {
       },
     });
 };
-export const getUserInfo = async (req: AuthenticatedRequest, res: Response) =>
+export const getUserInfo = async (req: AuthenticatedRequest, res: Response) => {
   res.status(200).send({
     success: true,
-    res: {
-      message: "user data is available now",
+    data: {
+      message: "User data is available",
       user: req.user,
     },
   });
+};
 export const updateProfile = async (
   req: AuthenticatedRequest,
   res: Response
 ) => {
-  const { error } = validateUpdateUser(req.body);
+  const { error } = validateUserFields(req.body);
   if (error) {
     return res.status(400).send({ error: error.details[0].message });
   }

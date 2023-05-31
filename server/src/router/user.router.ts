@@ -9,6 +9,6 @@ import { checkAuth } from "../middleware/auth";
 const router = Router();
 router.route("/login").post(loginUser);
 router.route("/register").post(registerUser);
-router.route("/update").post(checkAuth, updateProfile);
+router.route("/update").put(checkAuth, updateProfile);
 router.route("/getMe").get(checkAuth, getUserInfo);
 export default router;

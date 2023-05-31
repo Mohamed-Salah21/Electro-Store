@@ -1,12 +1,9 @@
 import { Request, Response } from "express";
 import Product from "../models/Products.model";
+import Category, { CategoryI } from "../models/category.model";
 export const getAllProducts = async (req: Request, res: Response) => {
-  let { category: queryCategory } = req.query;
-  const filter = {
-    category: queryCategory,
-  };
-  !queryCategory && delete filter.category;
-  const products = await Product.find(filter);
+  // api/products
+  const products = await Product.find({});
   if (!products[0]) {
     return res.status(400).send({
       error: "No products found",
@@ -14,10 +11,26 @@ export const getAllProducts = async (req: Request, res: Response) => {
   }
   res.status(200).send({
     success: true,
-    message: queryCategory
-      ? `Products are fetched and filtered by ${queryCategory} category`
-      : "All products are fetched successfully",
+    message: "All products are fetched successfully",
     products,
+  });
+};
+export const getProductsByCategory = async (req: Request, res: Response) => {
+  const checkExistedCategory: CategoryI | any = await Category.findById(
+    req.params.id
+  );
+  const filterProducts = await Product.find({
+    category: req.params.id,
+  });
+  if (checkExistedCategory) {
+    return res.status(400).send({
+      error: `Unkown category`,
+    });
+  }
+  res.status(200).send({
+    success: true,
+    message: `${checkExistedCategory.name} is fetched products`,
+    products: filterProducts,
   });
 };
 export const getProductById = async (req: Request, res: Response) => {

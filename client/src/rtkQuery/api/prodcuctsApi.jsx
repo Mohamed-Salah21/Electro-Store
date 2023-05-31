@@ -25,12 +25,13 @@ const productsApi = createApi({
     baseUrl,
   }),
   endpoints: (builder) => ({
-    getAllProducts: builder.query({
-      query: () => "/prodcuts",
+    fetchProducts: builder.query({
+      query: (queryParam) =>
+        queryParam ? `/products?category=${queryParam}` : "/products",
       providesTags: ["Products"],
     }),
   }),
 });
 
-export const { useGetAllProductsQuery } = productsApi;
+export const { useLazyFetchProductsQuery } = productsApi;
 export default productsApi;

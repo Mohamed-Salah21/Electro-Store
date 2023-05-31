@@ -1,23 +1,23 @@
 import { Schema, model } from "mongoose";
 // import joi from "joi";
 
-export interface ProductI  {
+export interface ProductI {
   title: string;
-  image: string;
   description: string;
+  image: string;
   price: number;
-  category: string;
-};
+  category: Schema.Types.ObjectId;
+}
 const productsSchema = new Schema<ProductI>({
   title: {
     type: String,
     required: true,
   },
-  image: {
+  description: {
     type: String,
     required: true,
   },
-  description: {
+  image: {
     type: String,
     required: true,
   },
@@ -26,8 +26,8 @@ const productsSchema = new Schema<ProductI>({
     required: true,
   },
   category: {
-    type: String,
-    required: true,
+    type: Schema.Types.ObjectId,
+    ref: "category",
   },
 });
 const Product = model("product", productsSchema);
