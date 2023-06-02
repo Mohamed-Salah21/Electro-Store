@@ -10,6 +10,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Badge, Popover, Stack } from "@mui/material";
 import NavDrawer from "./NavDrawer";
 import { useLocation, useNavigate } from "react-router";
+import LInks from "./LInks";
 
 export default function Navbar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -26,7 +27,7 @@ export default function Navbar() {
   const id = 5;
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  
+
   return (
     <Box
       sx={{
@@ -43,6 +44,7 @@ export default function Navbar() {
           position: "fixed",
           left: "50%",
           transform: "translateX(-50%)",
+          zIndex : "100",
           clipPath: {
             md: "polygon(0 0, 100% 1%, 99% 100%, 1% 100%)",
             xs: 0,
@@ -71,44 +73,8 @@ export default function Navbar() {
               ELECTRO STORE
             </Typography>
           </Stack>
-          <Stack
-            direction="row"
-            alignItems="center"
-            justiyContent="space-between"
-            px="20px"
-            gap="20px"
-          >
-            <Box>
-              <Button
-                aria-describedby={id}
-                variant="contained"
-                onClick={handleClick}
-                sx={{
-                  width: "100px",
-                }}
-              >
-                English
-              </Button>
-              <Popover
-                id={id}
-                open={open}
-                anchorEl={anchorEl}
-                onClose={handleClose}
-                onClick={handleClose}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
-                }}
-                sx={{
-                  width: "100%",
-                  cursor: "pointer",
-                }}
-              >
-                <Typography sx={{ width: "100px", textAlign: "center", py: 1 }}>
-                  Arabic
-                </Typography>
-              </Popover>
-            </Box>
+          <LInks />
+          <Stack direction="row" alignItems="center" gap="20px">
             <Badge badgeContent={4} color="primary">
               <ShoppingCartIcon sx={{ color: "#fff" }} />
             </Badge>

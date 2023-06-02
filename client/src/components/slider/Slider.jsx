@@ -1,38 +1,39 @@
 import React, { useEffect, useState } from "react";
 import { Splide, SplideTrack, SplideSlide } from "@splidejs/react-splide";
 import { Box, Typography, styled } from "@mui/material";
-import { useLazyFetchProductsQuery } from "../../rtkQuery/api/prodcuctsApi";
+import { useLazyGetProductsByCategoryQuery } from "../../rtkQuery/api/prodcuctsApi";
+import ProductCard from "../ProductCard/ProductCard";
 
-const CustomSlider = ({ title, cetegory }) => {
-  const StyledBox = styled(Box)({
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    height: "40vh",
-  });
+const CustomSlider = ({ cetegory }) => {
+  const [GetProductsByCategory] = useLazyGetProductsByCategoryQuery();
+  const [products, setProducts] = useState();
 
-  const [products, setProducts] = useState([]);
-  const [fetchProducts] = useLazyFetchProductsQuery();
   useEffect(() => {
-    fetchProducts(cetegory).then(({ data }) =>
-      data ? setProducts(data?.products) : undefined
-    );
+    GetProductsByCategory(cetegory?._id).then(({ data }) => {
+      if (data) {
+        setProducts([...data?.products]);
+      }
+    });
   }, []);
-
   return (
     <Box
       sx={{
         width: {
-          xl: "1200px",
-          lg: "992px",
-          xs: 0.9,
+          xl: 1500,
+          lg: 1200,
+          md: 1,
+          xs: 1,
         },
         mx: "auto",
-        // border: "1px solid red",
       }}
     >
-      <Typography align="center" fontWeight={"bold"} variant="h3">
-        {title}
+      <Typography
+        align="center"
+        fontWeight={"bold"}
+        variant="h3"
+        textTransform={"capitalize"}
+      >
+        {cetegory?.name}
       </Typography>
       <Splide
         hasTrack={false}
@@ -64,19 +65,18 @@ const CustomSlider = ({ title, cetegory }) => {
               perPage: 1,
             },
           },
-          focus: "center",
+          // focus: "center",
           pagination: true,
           gap: "20px",
         }}
       >
         <SplideTrack>
-          {products?.map((product) => (
-            <SplideSlide>
-              <StyledBox>
-                <Typography variant="h3">{product.title}</Typography>
-              </StyledBox>
-            </SplideSlide>
-          ))}
+          {products &&
+            products.map((product) => (
+              <SplideSlide>
+                <ProductCard item={product} />
+              </SplideSlide>
+            ))}
         </SplideTrack>
       </Splide>
     </Box>

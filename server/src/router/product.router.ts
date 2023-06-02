@@ -7,6 +7,7 @@ import {
 } from "../controllar/product.controllar";
 const router: Router = Router();
 router.route("/").get(getAllProducts);
-router.route("/:id").get(getProductById).get(getProductsByCategory);
+router.route("/:id").get(getProductById)
+router.route("/getByCategory/:id").get(getProductsByCategory);
 router.route("/add").post(addProduct);
 export default router;

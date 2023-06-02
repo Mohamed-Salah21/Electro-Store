@@ -5,6 +5,8 @@ import LoginPage from "../../pages/login/LoginPage";
 import CartPage from "../../pages/cart/CartPage";
 import FavouritesPage from "../../pages/favourites/FavouritesPage";
 import ProfilePage from "../../pages/profile/ProfilePage";
+import SingleProductPage from "../../pages/singleProduct/SingleProductPage";
+import Departments from "../../pages/departments/Departments";
 const AppRoutes = () => {
   return (
     <Routes>
@@ -14,6 +16,9 @@ const AppRoutes = () => {
       <Route path="/cart" element={<CartPage />} />
       <Route path="/favourites" element={<FavouritesPage />} />
       <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/departments" element={<Departments />} />
+      <Route path="/departments/:id" element={<Departments />} />
+      <Route path="/product/:id" element={<SingleProductPage />} />
     </Routes>
   );
 };

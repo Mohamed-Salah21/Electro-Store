@@ -16,20 +16,26 @@ export const getAllProducts = async (req: Request, res: Response) => {
   });
 };
 export const getProductsByCategory = async (req: Request, res: Response) => {
-  const checkExistedCategory: CategoryI | any = await Category.findById(
+  const existedCategory: CategoryI | any = await Category.findById(
     req.params.id
   );
-  const filterProducts = await Product.find({
-    category: req.params.id,
-  });
-  if (checkExistedCategory) {
+  if (!existedCategory) {
     return res.status(400).send({
-      error: `Unkown category`,
+      error: `Unkown category!`,
+    });
+  }
+
+  const filterProducts = await Product.find({
+    category: existedCategory._id,
+  })
+  if (!filterProducts[0]) {
+    return res.status(400).send({
+      error: `${existedCategory.name} don't includes products now`,
     });
   }
   res.status(200).send({
     success: true,
-    message: `${checkExistedCategory.name} is fetched products`,
+    message: `${existedCategory.name} is fetched products`,
     products: filterProducts,
   });
 };

@@ -26,12 +26,15 @@ const productsApi = createApi({
   }),
   endpoints: (builder) => ({
     fetchProducts: builder.query({
-      query: (queryParam) =>
-        queryParam ? `/products?category=${queryParam}` : "/products",
+      query: () => "/products",
       providesTags: ["Products"],
     }),
+    getProductsByCategory : builder.query({
+      query : (id) => `/products/getByCategory/${id}`,
+      providesTags: ["Products"],
+    })
   }),
 });
 
-export const { useLazyFetchProductsQuery } = productsApi;
+export const { useLazyFetchProductsQuery  , useLazyGetProductsByCategoryQuery  } = productsApi;
 export default productsApi;

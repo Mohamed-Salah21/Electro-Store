@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-// import joi from "joi";
+// import joi from "joi"; 
 
 export interface ProductI {
   title: string;
