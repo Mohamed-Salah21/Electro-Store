@@ -2,18 +2,28 @@ import { Schema, model } from "mongoose";
 // import joi from "joi"; 
 
 export interface ProductI {
-  title: string;
-  description: string;
+  title_en: string;
+  title_ar: string;
+  description_en: string;
+  description_ar: string;
   image: string;
   price: number;
   category: Schema.Types.ObjectId;
 }
 const productsSchema = new Schema<ProductI>({
-  title: {
+  title_en: {
     type: String,
     required: true,
   },
-  description: {
+  description_en: {
+    type: String,
+    required: true,
+  },
+  title_ar: {
+    type: String,
+    required: true,
+  },
+  description_ar: {
     type: String,
     required: true,
   },

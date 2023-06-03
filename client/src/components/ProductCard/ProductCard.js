@@ -11,12 +11,13 @@ import { baseUrl } from "../urls";
 import { colors, styledButton } from "../publicStyles/publicStyles";
 import { useNavigate } from "react-router";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-const ProductCard = ({ item }) => {
+const ProductCard = ({ item, externalWidth }) => {
   const navigate = useNavigate();
   return (
     <Box
       sx={{
         position: "relative",
+        width: externalWidth ? externalWidth : undefined,
       }}
     >
       <Stack

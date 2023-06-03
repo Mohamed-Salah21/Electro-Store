@@ -19,7 +19,7 @@ const CustomSlider = ({ cetegory }) => {
     <Box
       sx={{
         width: {
-          xl: 1500,
+          xl: 1400,
           lg: 1200,
           md: 1,
           xs: 1,
@@ -65,9 +65,8 @@ const CustomSlider = ({ cetegory }) => {
               perPage: 1,
             },
           },
-          // focus: "center",
           pagination: true,
-          gap: "20px",
+          gap: "40px",
         }}
       >
         <SplideTrack>

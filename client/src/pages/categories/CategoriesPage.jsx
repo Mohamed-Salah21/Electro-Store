@@ -8,7 +8,8 @@ import {
 import { useGetCategoriesQuery } from "../../rtkQuery/api/categoriesApi";
 import { useLazyGetProductsByCategoryQuery } from "../../rtkQuery/api/prodcuctsApi";
 import ProductCard from "../../components/ProductCard/ProductCard";
-const Departments = () => {
+import SeparateCategory from "./SeperateCategory";
+const CategoriesPage = () => {
   const { id: categoryId } = useParams();
   const navigate = useNavigate();
   const { data } = useGetCategoriesQuery();
@@ -61,7 +62,7 @@ const Departments = () => {
                       fontSize: "17px",
                       fontWeight: "bold",
                     }}
-                    onClick={() => navigate(`/departments/${category._id}`)}
+                    onClick={() => navigate(`/categories/${category._id}`)}
                   >
                     {category?.name}
                   </Button>
@@ -72,22 +73,34 @@ const Departments = () => {
               sx={{
                 ...middleContainer,
                 flexDirection: "row",
-                justifyContent: "space-evenly",
+                justifyContent: "center",
+                gap: "50px",
               }}
             >
               {products?.map((product) => (
                 <Box>
-                  <ProductCard item={product} />
+                  <ProductCard
+                    item={product}
+                    externalWidth={{
+                      lg: 300,
+                      md: 0.6,
+                      xs: 1,
+                    }}
+                  />
                 </Box>
               ))}
             </Stack>
           </>
         ) : (
-          <></>
+          <>
+            {data?.categories.map((category) => (
+              <SeparateCategory category={category} />
+            ))}
+          </>
         )}
       </Box>
     </Box>
   );
 };
 
-export default Departments;
+export default CategoriesPage;

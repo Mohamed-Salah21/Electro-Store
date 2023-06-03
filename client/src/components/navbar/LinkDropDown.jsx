@@ -35,10 +35,10 @@ const LinkDropDown = ({ item, pathname }) => {
           //   color: footerTextColor ? footerTextColor : "#000",
           fontWeight: "bolder",
           textTransform: "capitalize",
-          fontSize: "14px",
+          fontSize: "17px",
           backgroundColor: "transparent !important",
           //   fontFamily: publicFontFamily,
-          color: "#fff",
+          color: pathname.includes("/categories") ? colors.main : "#fff",
         }}
       >
         {item.title}
@@ -46,7 +46,7 @@ const LinkDropDown = ({ item, pathname }) => {
           sx={{
             transition: "transform 0.4s",
             transform: open ? "rotate(180deg)" : undefined,
-            color: "#fff",
+            color: pathname.includes("/categories") ? colors.main : "#fff",
           }}
         />
       </Button>
@@ -69,17 +69,17 @@ const LinkDropDown = ({ item, pathname }) => {
             <MenuItem
               key={nested.name}
               onClick={() => {
-                navigate(`/departments/${nested?._id}`);
+                navigate(`/categories/${nested?._id}`);
                 handleClose();
               }}
               sx={{
                 fontWeight: "bold",
                 bgcolor:
-                  pathname === `/departments/${nested?._id}`
+                  pathname === `/categories/${nested?._id}`
                     ? `${colors?.main} !important`
                     : undefined,
                 color:
-                  pathname === `/departments/${nested?._id}`
+                  pathname === `/categories/${nested?._id}`
                     ? `#fff !important`
                     : undefined,
               }}
@@ -90,19 +90,19 @@ const LinkDropDown = ({ item, pathname }) => {
         })}
         <MenuItem
           onClick={() => {
-            navigate(`departments`);
+            navigate(`/categories`);
             handleClose();
           }}
           sx={{
             fontWeight: "bold",
             bgcolor:
-              pathname === `/departments`
+              pathname === `/categories`
                 ? `${colors?.main} !important`
                 : undefined,
-            color: pathname === `/departments` ? `#fff !important` : undefined,
+            color: pathname === `/categories` ? `#fff !important` : undefined,
           }}
         >
-          All Departments
+          All Products
         </MenuItem>
       </Menu>
     </Box>

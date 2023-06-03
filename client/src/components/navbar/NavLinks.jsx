@@ -5,7 +5,7 @@ import { useGetCategoriesQuery } from "../../rtkQuery/api/categoriesApi";
 import LinkDropDown from "./LinkDropDown";
 import { colors } from "../publicStyles/publicStyles";
 
-const LInks = () => {
+const NavLinks = () => {
   const navigate = useNavigate();
   const { data } = useGetCategoriesQuery();
   const { pathname } = useLocation();
@@ -19,11 +19,11 @@ const LInks = () => {
       link: "/about",
     },
     {
-      title: "departments",
+      title: "Products",
       nestedLinks: data?.categories,
     },
     {
-      title: "Contact",
+      title: "Contact Us",
       link: "/contact",
     },
   ];
@@ -68,4 +68,4 @@ const LInks = () => {
   );
 };
 
-export default LInks;
+export default NavLinks;
