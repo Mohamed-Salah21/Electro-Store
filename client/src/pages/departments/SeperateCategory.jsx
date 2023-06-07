@@ -17,12 +17,17 @@ const SeparateCategory = ({ category }) => {
 
   return (
     <Box>
-      {category?.name && products[0] && (
+      {category?.name && products?.length > 0 && (
         <>
           <Typography
             sx={{
               textAlign: "center",
-              fontSize: "20px",
+              my: "50px",
+              fontSize: {
+                lg: "40px",
+                md: "30px",
+                xs: "25px",
+              },
               //   fontFamily: `${publicFontFamily} !important`,
               fontWeight: "bold",
             }}
@@ -36,8 +41,8 @@ const SeparateCategory = ({ category }) => {
                 lg: "row",
                 xs: "column",
               },
-              justifyContent: "space-evenly",
-              gap: "15px",
+              justifyContent: "center",
+              gap: "40px",
             }}
           >
             {products?.map((product) => (
@@ -49,7 +54,7 @@ const SeparateCategory = ({ category }) => {
                 <ProductCard
                   item={product}
                   externalWidth={{
-                    lg: 400,
+                    lg: 350,
                     md: 0.6,
                     xs: 1,
                   }}

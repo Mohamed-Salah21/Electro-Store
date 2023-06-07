@@ -7,6 +7,7 @@ import FavouritesPage from "../../pages/favourites/FavouritesPage";
 import ProfilePage from "../../pages/profile/ProfilePage";
 import SingleProductPage from "../../pages/singleProduct/SingleProductPage";
 import Departments from "../../pages/departments/Departments";
+import ContactPage from "../../pages/contact/ContactPage";
 const AppRoutes = () => {
   return (
     <Routes>
@@ -14,6 +15,7 @@ const AppRoutes = () => {
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/cart" element={<CartPage />} />
+      <Route path="/contact" element={<ContactPage />} />
       <Route path="/favourites" element={<FavouritesPage />} />
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/departments" element={<Departments />} />

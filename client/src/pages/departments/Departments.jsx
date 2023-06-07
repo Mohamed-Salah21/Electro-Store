@@ -8,6 +8,7 @@ import {
 import { useGetCategoriesQuery } from "../../rtkQuery/api/categoriesApi";
 import { useLazyGetProductsByCategoryQuery } from "../../rtkQuery/api/prodcuctsApi";
 import ProductCard from "../../components/ProductCard/ProductCard";
+import SeparateCategory from "./SeperateCategory";
 const Departments = () => {
   const { id: categoryId } = useParams();
   const navigate = useNavigate();
@@ -48,6 +49,7 @@ const Departments = () => {
                     variant="h1"
                     border={1}
                     borderColor={"red"}
+                    disaplRipple
                     sx={{
                       bgcolor:
                         categoryId === category._id
@@ -60,8 +62,9 @@ const Departments = () => {
                       // fontFamily: publicFontFamily,
                       fontSize: "17px",
                       fontWeight: "bold",
+                      cursor: "default",
                     }}
-                    onClick={() => navigate(`/departments/${category._id}`)}
+                    // onClick={() => navigate(`/departments/${category._id}`)}
                   >
                     {category?.name}
                   </Button>
@@ -83,7 +86,14 @@ const Departments = () => {
             </Stack>
           </>
         ) : (
-          <></>
+          <>
+            {data?.categories &&
+              data?.categories.map((category) => (
+                <Box key={category?._id}>
+                  <SeparateCategory category={category} />
+                </Box>
+              ))}
+          </>
         )}
       </Box>
     </Box>
