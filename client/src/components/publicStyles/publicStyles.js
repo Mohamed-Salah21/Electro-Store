@@ -1,5 +1,7 @@
 export const colors = {
   main: "#FEBB00",
+  // main: "#C39803",
+  // main: "#fee489",
 };
 
 export const styledButton = {

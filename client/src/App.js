@@ -12,7 +12,6 @@ const App = () => {
     },
   });
   const lang = "en";
-  const selector = useSelector((state) => state);
 
   return (
     <BrowserRouter>

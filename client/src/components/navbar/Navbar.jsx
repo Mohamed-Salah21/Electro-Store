@@ -10,7 +10,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Badge, Popover, Stack } from "@mui/material";
 import NavDrawer from "./NavDrawer";
 import { useLocation, useNavigate } from "react-router";
-import LInks from "./LInks";
+import LInks from "./NavLinks";
 
 export default function Navbar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -44,7 +44,7 @@ export default function Navbar() {
           position: "fixed",
           left: "50%",
           transform: "translateX(-50%)",
-          zIndex : "100",
+          zIndex: "100",
           clipPath: {
             md: "polygon(0 0, 100% 1%, 99% 100%, 1% 100%)",
             xs: 0,

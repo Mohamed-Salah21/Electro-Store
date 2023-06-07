@@ -19,7 +19,8 @@ const ContactPage = () => {
       message: string().required(),
     }),
     onSubmit: () => {
-      alert("ok");
+      alert("Ok");
+      resetForm();
     },
   });
   const {
@@ -34,7 +35,7 @@ const ContactPage = () => {
   return (
     <Box
       sx={{
-        pt: "100px",
+        pt: "85px",
       }}
     >
       <Box component="header" align={"center"}>
@@ -112,6 +113,7 @@ const ContactPage = () => {
             name="message"
             onChange={handleChange}
             onBlur={handleBlur}
+            placeholder={"Message..."}
             style={{
               backgroundColor:
                 touched.message && errors.message ? "#fff" : "#e5e5e5",

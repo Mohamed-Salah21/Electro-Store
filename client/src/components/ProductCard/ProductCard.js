@@ -16,7 +16,7 @@ const ProductCard = ({ item, externalWidth }) => {
     <Box
       sx={{
         position: "relative",
-        width: externalWidth ? externalWidth : "initial",
+        width: externalWidth ? externalWidth : undefined,
       }}
     >
       <Stack
