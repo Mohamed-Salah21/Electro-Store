@@ -2,7 +2,6 @@ import {
   Box,
   Button,
   CardMedia,
-  Paper,
   Stack,
   Typography,
 } from "@mui/material";

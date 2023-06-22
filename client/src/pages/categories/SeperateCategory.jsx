@@ -24,7 +24,12 @@ const SeparateCategory = ({ category }) => {
             variant="h2"
             sx={{
               textAlign: "center",
-              fontSize: "30px",
+              my: "50px",
+              fontSize: {
+                lg: "40px",
+                md: "30px",
+                xs: "25px",
+              },
               //   fontFamily: `${publicFontFamily} !important`,
               fontWeight: "bold",
               my: "40px",
@@ -44,10 +49,13 @@ const SeparateCategory = ({ category }) => {
             // }}
             flexWrap="wrap"
             sx={{
-              ...middleContainer,
-              flexDirection: "row",
+              flexWrap: "wrap",
+              flexDirection: {
+                lg: "row",
+                xs: "column",
+              },
               justifyContent: "center",
-              gap: "50px",
+              gap: "40px",
             }}
           >
             {products?.map((product) => (
@@ -59,7 +67,7 @@ const SeparateCategory = ({ category }) => {
                 <ProductCard
                   item={product}
                   externalWidth={{
-                    lg: 300,
+                    lg: 350,
                     md: 0.6,
                     xs: 1,
                   }}

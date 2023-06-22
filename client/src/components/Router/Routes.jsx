@@ -6,7 +6,8 @@ import CartPage from "../../pages/cart/CartPage";
 import FavouritesPage from "../../pages/favourites/FavouritesPage";
 import ProfilePage from "../../pages/profile/ProfilePage";
 import SingleProductPage from "../../pages/singleProduct/SingleProductPage";
-import CategoriesPage from "../../pages/categories/CategoriesPage";
+import ContactPage from "../../pages/contact/ContactPage";
+import CategoriesPage from "../../pages/categories/CategoriesPage"
 const AppRoutes = () => {
   return (
     <Routes>
@@ -14,6 +15,7 @@ const AppRoutes = () => {
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/cart" element={<CartPage />} />
+      <Route path="/contact" element={<ContactPage />} />
       <Route path="/favourites" element={<FavouritesPage />} />
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/categories" element={<CategoriesPage />} />

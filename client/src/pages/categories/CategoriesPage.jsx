@@ -49,6 +49,7 @@ const CategoriesPage = () => {
                     variant="h1"
                     border={1}
                     borderColor={"red"}
+                    disaplRipple
                     sx={{
                       bgcolor:
                         categoryId === category._id
@@ -61,8 +62,9 @@ const CategoriesPage = () => {
                       // fontFamily: publicFontFamily,
                       fontSize: "17px",
                       fontWeight: "bold",
+                      cursor: "default",
                     }}
-                    onClick={() => navigate(`/categories/${category._id}`)}
+                    // onClick={() => navigate(`/departments/${category._id}`)}
                   >
                     {category?.name}
                   </Button>
@@ -93,9 +95,12 @@ const CategoriesPage = () => {
           </>
         ) : (
           <>
-            {data?.categories.map((category) => (
-              <SeparateCategory category={category} />
-            ))}
+            {data?.categories &&
+              data?.categories.map((category) => (
+                <Box key={category?._id}>
+                  <SeparateCategory category={category} />
+                </Box>
+              ))}
           </>
         )}
       </Box>

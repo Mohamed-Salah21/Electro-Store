@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Box } from "@mui/material";
 import { useSelector } from "react-redux";
-import Navbar from "./components/navbar/Navbar";
+import Navbar from "./components/Navbar/Navbar"
 const App = () => {
   const theme = createTheme({
     typography: {
@@ -12,7 +12,10 @@ const App = () => {
     },
   });
   const lang = "en";
+<<<<<<< HEAD:client/src/App.jsx
 
+=======
+>>>>>>> 3ca415e112c4ab9490ea5772f7b718ebd6075152:client/src/App.js
 
   return (
     <BrowserRouter>
