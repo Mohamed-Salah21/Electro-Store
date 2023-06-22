@@ -6,8 +6,8 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-
 import { Badge, Popover, Stack } from "@mui/material";
+
 import NavDrawer from "./NavDrawer";
 import { useLocation, useNavigate } from "react-router";
 import LInks from "./NavLinks";
