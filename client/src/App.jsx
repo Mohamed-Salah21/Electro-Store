@@ -12,6 +12,10 @@ const App = () => {
     },
   });
   const lang = "en";
+<<<<<<< HEAD:client/src/App.jsx
+
+=======
+>>>>>>> 3ca415e112c4ab9490ea5772f7b718ebd6075152:client/src/App.js
 
   return (
     <BrowserRouter>

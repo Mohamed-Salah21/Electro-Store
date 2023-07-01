@@ -3,7 +3,7 @@ import React from "react";
 import { useLocation, useNavigate } from "react-router";
 import { useGetCategoriesQuery } from "../../rtkQuery/api/categoriesApi";
 import LinkDropDown from "./LinkDropDown";
-import { colors } from "../publicStyles/publicStyles";
+// import { colors } from "../publicStyles/publicStyles";
 
 const NavLinks = () => {
   const navigate = useNavigate();
@@ -20,7 +20,8 @@ const NavLinks = () => {
     },
     {
       title: "Products",
-      nestedLinks: data?.categories,
+      // nestedLinks: data?.categories,
+      nestedLinks: [],
     },
     {
       title: "Contact Us",
@@ -48,7 +49,7 @@ const NavLinks = () => {
             disableRipple
             onClick={() => navigate(item.link)}
             sx={{
-              color: pathname === item.link ? colors.main : "#fff",
+              // color: pathname === item.link ? colors.main : "#fff",
 
               fontSize: {
                 lg: "16px",

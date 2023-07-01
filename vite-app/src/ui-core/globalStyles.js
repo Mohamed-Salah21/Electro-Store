@@ -1,15 +1,20 @@
 export const colors = {
   main: "#FEBB00",
-  // main: "#C39803",
-  // main: "#fee489",
+  lighter: "#f5e8c3",
 };
 export const styledButton = {
-  bgcolor: colors.main,
+  bgcolor: `${colors.main} !important`,
   color: "#fff",
   padding: "5px 0",
-  fontSize: "18px",
+  fontSize: "16px",
   fontWeight: "bold",
-  borderRadius: "10px",
+  px: "10px",
+  py: "15px",
+  textTransform: "none",
+  transition: "0.3s all",
+  "&:active": {
+    transform: "scale(0.9)",
+  },
 };
 export const middleContainer = {
   width: {
@@ -20,5 +25,8 @@ export const middleContainer = {
   },
   mx: "auto",
   gap: "10px",
-  my: "20px",
+};
+export const sizeNormal = {
+  md: "18px",
+  xs: "16px",
 };
