@@ -1,9 +1,16 @@
-import React from 'react'
+import React from "react";
 
 const ContactUsPage = () => {
   return (
-    <div>ContactUsPage</div>
-  )
-}
+    <div
+      style={{
+        height: "100vh",
+        backgroundColor: "red",
+      }}
+    >
+      ContactUsPage
+    </div>
+  );
+};
 
-export default ContactUsPage
+export default ContactUsPage;

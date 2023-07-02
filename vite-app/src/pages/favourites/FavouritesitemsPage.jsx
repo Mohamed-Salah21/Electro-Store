@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import { useFetchFavouritesItems } from "../../hooks/useFavItemsHooks";
 import Loader from "../../components/main/Loader";
 import ErrorMessage from "../../components/main/ErrorMessage";
@@ -21,11 +21,22 @@ const FavouritesitemsPage = () => {
           }}
         >
           {favourites.data?.length > 0 && !favourites.error ? (
-            <Box>
+            <Stack
+              sx={{
+                flexDirection: "row",
+                justifyContent: "center",
+                flexWrap: "wrap",
+                gap: {
+                  xl: "50px",
+                  lg: "35px",
+                  md: "5%",
+                },
+              }}
+            >
               {favourites.data.map((item) => (
-                <FavItem item = {item} key = {item._id} />
+                <FavItem item={item} key={item._id} />
               ))}
-            </Box>
+            </Stack>
           ) : (
             <ErrorMessage error={favourites.error} />
           )}

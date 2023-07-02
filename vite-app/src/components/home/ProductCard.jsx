@@ -15,11 +15,11 @@ import ButtonEL from "../main/ButtonELement";
 import { addToCart } from "../../hooks/useCartHooks";
 import { useAddToFavourites } from "../../hooks/useFavItemsHooks";
 const ProductCard = ({ item, externalWidth }) => {
-  const [useAddToCartHook] = addToCart();
+  const [useAddToCartHook, { addOrderLoading }] = addToCart();
   const [addToFavouritesItems] = useAddToFavourites();
   const navigate = useNavigate();
   const handleAddToCart = () => {
-    useAddToCartHook(item);
+    useAddToCartHook(item._id);
   };
   const handleAddToFavourites = () => {
     addToFavouritesItems(item);
@@ -68,11 +68,16 @@ const ProductCard = ({ item, externalWidth }) => {
             sx={{
               color: colors.main,
               cursor: "pointer",
+              transition: "all 0.3s",
+              "&:active": {
+                transform: "scale(0.6)",
+              },
             }}
             onClick={handleAddToFavourites}
           />
           <ButtonEL
             content={"add to cart"}
+            isLoading={addOrderLoading}
             extraStyle={{
               width: 0.8,
             }}

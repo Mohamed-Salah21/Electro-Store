@@ -30,8 +30,8 @@ export const useFetchCartItemsHook = () => {
 };
 export const addToCart = () => {
   const [addOrder, { isLoading }] = useAddOrderMutation();
-  const useAddToCartHook = (payload) => {
-    addOrder({ product: payload._id }).then(({ data, error }) => {
+  const useAddToCartHook = (productId) => {
+    addOrder({ product: productId }).then(({ data, error }) => {
       if (data && !error) {
         toast.success(data.message);
       } else {

@@ -21,6 +21,7 @@ const Navbar = () => {
         position: "absolute",
         width: 1,
         zIndex: "2",
+        border: "1px solid red",
       }}
     >
       {" "}

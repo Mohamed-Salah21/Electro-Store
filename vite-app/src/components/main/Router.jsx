@@ -7,10 +7,12 @@ import CategoriesPage from "../../pages/categories/CategoriesPage";
 import LoginPage from "../../pages/login/LoginPage";
 import RegistrationPage from "../../pages/registeration/RegisterPage";
 import ProtectedRoutes from "./ProtectedRoutes";
+import ContactUsPage from "../../pages/contactUs/ContactUsPage";
 const AppRoutes = () => (
   <Routes>
     <Route path="/" element={<HomePage />} />
     <Route path="/favourites" element={<FavouritesitemsPage />} />
+    <Route path="/contact-us" element={<ContactUsPage />} />
     <Route path="/cart" element={<CartItemsPage />} />
     <Route path="/categories" element={<CategoriesPage />} />
     <Route path="/categories/:categoryId" element={<CategoriesPage />} />
