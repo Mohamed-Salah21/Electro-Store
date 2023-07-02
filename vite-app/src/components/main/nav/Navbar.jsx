@@ -7,10 +7,14 @@ import NavDrawer from "./NavDrawer";
 import LinkElelment from "../LinkElement";
 import CategoriesMenu from "./CategoriesMenu";
 import { useTranslation } from "react-i18next";
+import { useFetchCartItemsHook } from "../../../hooks/useCartHooks";
+import { useFetchFavouritesItems } from "../../../hooks/useFavItemsHooks";
 const Navbar = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const [_, { language }] = useTranslation();
+  const { cartItems } = useFetchCartItemsHook();
+  const { favourites } = useFetchFavouritesItems();
   return (
     <Box
       sx={{
@@ -39,8 +43,14 @@ const Navbar = () => {
         <LinkElelment path={"/about-us"} text={"About Us"} color={"#fff"} />
         <LinkElelment path={"/about-us"} text={"About Us"} color={"#fff"} />
         <LinkElelment path={"/contact-us"} text={"Contact Us"} color={"#fff"} />
-        <LinkElelment path={"/login"} text={"Login"} color={"#fff"} />
-        <LinkElelment path={"/register"} text={"Register"} color={"#fff"} />
+        <LinkElelment path={"/cart"} text={"Cart"} color={"#fff"} />
+        <LinkElelment path={"/favourites"} text={"Favourites"} color={"#fff"} />
+        {!sessionStorage?.userToken ? (
+          <>
+            <LinkElelment path={"/login"} text={"Login"} color={"#fff"} />
+            <LinkElelment path={"/register"} text={"Register"} color={"#fff"} />
+          </>
+        ) : null}
       </Box>
       <Box
         sx={{
@@ -84,12 +94,24 @@ const Navbar = () => {
         </Stack>
 
         <Stack direction="row" alignItems="center" gap="20px">
-          <Badge badgeContent={4} color="primary">
+          <Badge
+            badgeContent={
+              cartItems.data[0] && !cartItems.error ? cartItems.data.length : 0
+            }
+            color="primary"
+          >
             <ShoppingCartIcon
               sx={{ color: pathname === "/" ? "#fff" : "#000" }}
             />
           </Badge>
-          <Badge badgeContent={4} color="primary">
+          <Badge
+            badgeContent={
+              favourites.data[0] && !favourites.error
+                ? favourites.data.length
+                : 0
+            }
+            color="primary"
+          >
             <FavoriteIcon sx={{ color: pathname === "/" ? "#fff" : "#000" }} />
           </Badge>
         </Stack>

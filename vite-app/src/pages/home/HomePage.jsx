@@ -14,7 +14,7 @@ const HomePage = () => {
       <HeroSlider />
       {data?.categories &&
         data?.categories?.map((category) => (
-          <CategoryProductsSlider cetegory={category} />
+          <CategoryProductsSlider  cetegory={category} />
         ))}
     </Box>
   );

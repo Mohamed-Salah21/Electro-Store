@@ -9,6 +9,11 @@ export const getFavouritesProducts = async (
   const favourites = await Favourite.find({ user: req.user }).populate(
     "user product"
   );
+  if (!favourites[0]) {
+    return res.status(400).send({
+      error: "you don't have favourites products",
+    });
+  }
   res.status(200).send({
     success: true,
     res: {
@@ -17,7 +22,10 @@ export const getFavouritesProducts = async (
     },
   });
 };
-export const addToFavouritesList = async (req: AuthenticatedRequest, res: Response) => {
+export const addToFavouritesList = async (
+  req: AuthenticatedRequest,
+  res: Response
+) => {
   const product = await Product.findById(req.params.productId);
   const favProduct = {
     user: req.user._id,
@@ -41,7 +49,10 @@ export const addToFavouritesList = async (req: AuthenticatedRequest, res: Respon
   });
   newLike.save();
 };
-export const removeFromFavouritesList = async (req: AuthenticatedRequest, res: Response) => {
+export const removeFromFavouritesList = async (
+  req: AuthenticatedRequest,
+  res: Response
+) => {
   const product = await Product.findById(req.params.productId);
   if (!product) {
     return res.status(400).send({

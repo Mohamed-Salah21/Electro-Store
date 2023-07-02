@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Box, CircularProgress } from "@mui/material";
 import { colors } from "../../ui-core/globalStyles";
 

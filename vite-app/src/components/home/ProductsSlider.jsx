@@ -9,6 +9,7 @@ const CategoryProductsSlider = ({ cetegory }) => {
   const { products, isLoading, error } = response;
   return (
     <Box
+      key={cetegory._id}
       sx={{
         width: {
           xl: 1400,

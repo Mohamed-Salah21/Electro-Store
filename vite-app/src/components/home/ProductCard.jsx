@@ -12,9 +12,18 @@ import { useNavigate } from "react-router";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import { imageBaseUrl } from "../../services/https";
 import ButtonEL from "../main/ButtonELement";
+import { addToCart } from "../../hooks/useCartHooks";
+import { useAddToFavourites } from "../../hooks/useFavItemsHooks";
 const ProductCard = ({ item, externalWidth }) => {
+  const [useAddToCartHook] = addToCart();
+  const [addToFavouritesItems] = useAddToFavourites();
   const navigate = useNavigate();
-  const handleAddToCart = () => {};
+  const handleAddToCart = () => {
+    useAddToCartHook(item);
+  };
+  const handleAddToFavourites = () => {
+    addToFavouritesItems(item);
+  };
   return (
     <Box
       sx={{
@@ -31,8 +40,8 @@ const ProductCard = ({ item, externalWidth }) => {
           objectFit: "cover",
         }}
         component="img"
-        src={`${imageBaseUrl}/${item.image}`}
-        alt={item.title}
+        src={`${imageBaseUrl}/${item?.image}`}
+        alt={item?.title}
       />
       <Typography
         variant="h5"
@@ -60,6 +69,7 @@ const ProductCard = ({ item, externalWidth }) => {
               color: colors.main,
               cursor: "pointer",
             }}
+            onClick={handleAddToFavourites}
           />
           <ButtonEL
             content={"add to cart"}

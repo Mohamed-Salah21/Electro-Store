@@ -19,7 +19,7 @@ export const validateUserFields = (payload: UserI) => {
     }),
     username: joi.string().required(),
     phone: joi.string().required(),
-    image: joi.string(),
+    image: joi.string().min(0).allow("").optional(),
   });
   return userSch.validate(payload);
 };

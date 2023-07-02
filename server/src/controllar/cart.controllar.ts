@@ -10,10 +10,15 @@ export const getCartItems = async (
   const cartItems: CartI[] | any = await Cart.find({
     user: req.user,
   }).populate("user product");
+  if (!cartItems[0]) {
+    return res.status(400).send({
+      error: "Cart already is empty",
+    });
+  }
   res.status(200).send({
     success: true,
     message: "Cart items are fetched successfully",
-    cartItems,
+    cart: cartItems,
   });
 };
 export const createOrder = async (req: AuthenticatedRequest, res: Response) => {
@@ -35,7 +40,7 @@ export const createOrder = async (req: AuthenticatedRequest, res: Response) => {
   }
   const newOrder = new Cart({
     product: req.body.product,
-    quantity: req.body.quantity,
+    quantity: req.body.quantity ? req.body.quantity : 1,
     user: req.user._id,
   });
   newOrder.save();
@@ -45,7 +50,7 @@ export const createOrder = async (req: AuthenticatedRequest, res: Response) => {
   });
 };
 
-export const removeOrder = async (req: AuthenticatedRequest, res: Response) => { 
+export const removeOrder = async (req: AuthenticatedRequest, res: Response) => {
   const checkExisted = await Cart.findOne({
     user: req.user._id,
     product: req.params.id,
@@ -95,5 +100,20 @@ export const updateQuantity = async (
   res.status(200).send({
     success: true,
     message: "Quantity is updated",
+  });
+};
+export const clearCart = async (req: AuthenticatedRequest, res: Response) => {
+  const cart: CartI[] | any = await Cart.find({ user: req.user._id });
+  if (!cart[0]) {
+    return res.status(400).send({
+      error: "Cart already is empty",
+    });
+  }
+  await Cart.deleteMany({
+    user: req.user._id,
+  });
+  res.status(200).send({
+    success: true,
+    message: "cart is cleared successfully",
   });
 };

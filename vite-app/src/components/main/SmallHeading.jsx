@@ -1,12 +1,12 @@
 import { Typography } from "@mui/material";
 
-const MediumHeading = ({ content, style }) => {
+const SmallHeading = ({ content, style }) => {
   return (
     <Typography
       sx={{
         fontSize: {
-          lg: "35px",
-          xs: "30px",
+          lg: "27px",
+          xs: "23px",
         },
         textAlign: "center",
         fontWeight: 600,
@@ -18,4 +18,4 @@ const MediumHeading = ({ content, style }) => {
   );
 };
 
-export default MediumHeading;
+export default SmallHeading;

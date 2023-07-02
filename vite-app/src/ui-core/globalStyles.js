@@ -1,6 +1,7 @@
 export const colors = {
   main: "#FEBB00",
   lighter: "#f5e8c3",
+  error: "#F1431B",
 };
 export const styledButton = {
   bgcolor: `${colors.main} !important`,
@@ -8,8 +9,7 @@ export const styledButton = {
   padding: "5px 0",
   fontSize: "16px",
   fontWeight: "bold",
-  px: "10px",
-  py: "15px",
+  p: "5px 10px",
   textTransform: "none",
   transition: "0.3s all",
   "&:active": {
