@@ -1,3 +1,4 @@
+export const publicFontFamily = "";
 export const colors = {
   main: "#FEBB00",
   lighter: "#f5e8c3",

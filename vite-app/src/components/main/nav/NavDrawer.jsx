@@ -26,7 +26,14 @@ export default function NavDrawer() {
   const lang = "ar";
   const dirDrawer = lang === "en" ? "left" : "right";
   return (
-    <div>
+    <Box
+      sx={{
+        display: {
+          md: "none",
+          xs: "block",
+        },
+      }}
+    >
       <Button sx={{ minWidth: 0 }} onClick={toggleDrawer(dirDrawer, true)}>
         {!state[dirDrawer] ? (
           <DehazeIcon sx={{ color: "#fff" }} />
@@ -73,6 +80,6 @@ export default function NavDrawer() {
           ))}
         </Box>
       </Drawer>
-    </div>
+    </Box>
   );
 }

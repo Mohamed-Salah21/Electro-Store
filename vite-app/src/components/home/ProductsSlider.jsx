@@ -2,7 +2,7 @@ import React from "react";
 import { Splide, SplideTrack, SplideSlide } from "@splidejs/react-splide";
 import { Box, Typography, styled } from "@mui/material";
 import ProductCard from "./ProductCard";
-import useFetchProductsByCategory from "../../hooks/useFetchProductsByCategory";
+import useFetchProductsByCategory from "../../hooks/useFetchProducts";
 import ErrorMessage from "../main/ErrorMessage";
 const CategoryProductsSlider = ({ cetegory }) => {
   const { response } = useFetchProductsByCategory(cetegory?._id);

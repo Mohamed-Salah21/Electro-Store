@@ -3,12 +3,7 @@ import { colors, styledButton } from "../../ui-core/globalStyles";
 import LoadingIcon from "./LoadingIcon";
 import { Button } from "@mui/material";
 
-const ButtonELement = ({
-  content,
-  extraStyle,
-  handleClick,
-  isLoading,
-}) => {
+const ButtonELement = ({ content, extraStyle, handleClick, isLoading }) => {
   return (
     <Button
       type="button"

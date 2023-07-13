@@ -2,10 +2,10 @@ import { Box, Button, Stack } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router";
 import { useGetCategoriesQuery } from "../../redux/api/categoriesApi";
-import useFetchProductsByCategory from "../../hooks/useFetchProductsByCategory";
 import SeparateCategory from "../../components/home/SeparateCategory";
 import { colors, middleContainer } from "../../ui-core/globalStyles";
 import ProductCard from "../../components/home/ProductCard";
+import useFetchProductsByCategory from "../../hooks/useFetchProducts";
 
 const CategoriesPage = () => {
   const { categoryId } = useParams();

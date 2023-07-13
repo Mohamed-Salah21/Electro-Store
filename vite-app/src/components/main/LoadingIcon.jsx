@@ -6,7 +6,7 @@ const LoadingIcon = () => {
     <CircularProgress
       size={20}
       sx={{
-        color: "#fff",
+        color: "#000",
       }}
     />
   );

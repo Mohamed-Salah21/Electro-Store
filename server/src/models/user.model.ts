@@ -40,6 +40,8 @@ const userSchema = new Schema<UserI>({
   role: {
     type: String,
     required: true,
+    default: "user",
+    enum: ["user", "superAdmin", "subAdmin"],
   },
   image: {
     type: String,

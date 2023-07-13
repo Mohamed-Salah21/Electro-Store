@@ -20,7 +20,20 @@ const authApi = createApi({
       }),
       invalidatesTags: ["Auth"],
     }),
+    getUserInfo: builder.query({
+      query: () => ({
+        url: `/user/getMe`,
+        headers: {
+          Authentication: sessionStorage.userToken,
+        },
+      }),
+      providesTags: ["Auth"],
+    }),
   }),
 });
-export const { useLoginMutation, useRegisterMutation } = authApi;
+export const {
+  useLoginMutation,
+  useRegisterMutation,
+  useLazyGetUserInfoQuery,
+} = authApi;
 export default authApi;

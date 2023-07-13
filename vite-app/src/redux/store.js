@@ -4,12 +4,14 @@ import productsApi from "./api/productsApi";
 import authApi from "./api/authApi";
 import cartApi from "./api/cartApi";
 import favouritesApi from "./api/favouritesApi";
+import userSliice from "./slices/userSliice";
 const rootReducer = combineReducers({
   [categoriesApi.reducerPath]: categoriesApi.reducer,
   [productsApi.reducerPath]: productsApi.reducer,
   [authApi.reducerPath]: authApi.reducer,
   [cartApi.reducerPath]: cartApi.reducer,
   [favouritesApi.reducerPath]: favouritesApi.reducer,
+  currentUser: userSliice,
 });
 
 const store = configureStore({

@@ -6,15 +6,11 @@ import HeroSlider from "../../components/home/HeroSlider";
 const HomePage = () => {
   const { data } = useGetCategoriesQuery();
   return (
-    <Box
-      sx={{
-        pb: "15vh",
-      }}
-    >
+    <Box sx={{}}>
       <HeroSlider />
       {data?.categories &&
         data?.categories?.map((category) => (
-          <CategoryProductsSlider  cetegory={category} />
+          <CategoryProductsSlider cetegory={category} />
         ))}
     </Box>
   );

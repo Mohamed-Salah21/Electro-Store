@@ -13,7 +13,6 @@ export const getAllCategories = async (req: Request, res: Response) => {
     categories,
   });
 };
-
 export const addNewCategory = async (req: Request, res: Response) => {
   const check: CategoryI | any = await Category.findOne({
     name: req.body.name,

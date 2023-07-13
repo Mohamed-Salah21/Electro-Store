@@ -9,6 +9,11 @@ import CategoriesMenu from "./CategoriesMenu";
 import { useTranslation } from "react-i18next";
 import { useFetchCartItemsHook } from "../../../hooks/useCartHooks";
 import { useFetchFavouritesItems } from "../../../hooks/useFavItemsHooks";
+import { routesData } from "../../../constants/routesData";
+import { colors } from "../../../ui-core/globalStyles";
+import LinkDropDown from "./LinkDropDown";
+import ProfileMenu from "./ProfileMenu";
+import BadgeDrawer from "./BadgeDrawer";
 const Navbar = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -19,104 +24,88 @@ const Navbar = () => {
     <Box
       sx={{
         position: "absolute",
-        width: 1,
+        width: 0.8,
         zIndex: "2",
-        border: "1px solid red",
+        top: "2vh",
+        left: "50%",
+        transform: "translateX(-50%)",
+        bgcolor: "#1c1a1482",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        py: "10px",
       }}
     >
-      {" "}
-      <Box
+      <Typography>Site</Typography>
+      <Stack
+        direction="row"
+        alignItems="center"
         sx={{
-          width: 0.8,
-          bgcolor: "#000",
-          display: "flex",
-          justifyContent: "center",
-          gap: "30px",
-          py: "10px",
-          mx: "auto",
-          clipPath: {
-            md: "polygon(0 0, 100% 1%, 99% 100%, 1% 100%)",
-            xs: 0,
-          },
+          gap: "50px",
         }}
       >
-        <LinkElelment path={"/"} text={"Home"} color={"#fff"} />
-        <LinkElelment path={"/about-us"} text={"About Us"} color={"#fff"} />
-        <LinkElelment path={"/about-us"} text={"About Us"} color={"#fff"} />
-        <LinkElelment path={"/contact-us"} text={"Contact Us"} color={"#fff"} />
-        <LinkElelment path={"/cart"} text={"Cart"} color={"#fff"} />
-        <LinkElelment path={"/favourites"} text={"Favourites"} color={"#fff"} />
-        {!sessionStorage?.userToken ? (
-          <>
-            <LinkElelment path={"/login"} text={"Login"} color={"#fff"} />
-            <LinkElelment path={"/register"} text={"Register"} color={"#fff"} />
-          </>
-        ) : null}
-      </Box>
-      <Box
-        sx={{
-          display:
-            pathname === "/login" || pathname === "/register" ? "none" : "flex",
-          justifyContent: "center",
-        }}
-        my={"30px"}
-      >
-        <Typography
-          variant="h4"
-          sx={{
-            color: pathname === "/" ? "#fff" : "#000",
-            cursor: "pointer",
-            fontWeight: "bold",
-          }}
-          onClick={() => navigate("/")}
-        >
-          ELECTRO STORE
-        </Typography>
-      </Box>
-      <Box
-        sx={{
-          display:
-            pathname === "/login" || pathname === "/register" ? "none" : "flex",
-          justifyContent: "space-between",
-          width: 0.8,
-          mx: "auto",
-        }}
-      >
-        <Stack
-          direction="row"
-          alignItems="center"
-          justiyContent="center"
-          sx={{
-            gap: "20px",
-          }}
-        >
-          <NavDrawer />
-          {!pathname.includes("/categories") ? <CategoriesMenu /> : undefined}
+        <Stack direction="row" gap="20px">
+          {routesData().map((item) =>
+            !item.nestedLinks ? (
+              <LinkElelment
+                path={item.path}
+                text={item.title}
+                color={colors.main}
+              />
+            ) : (
+              <LinkDropDown
+                item={item}
+                pathname={pathname}
+                extraColor={colors.main}
+              />
+            )
+          )}
         </Stack>
+        <Stack direction="row" alignItems="center" gap="10px">
+          <BadgeDrawer
+            path="/cart"
+            items={cartItems.data[0] && !cartItems.error ? cartItems.data : []}
+            badge={
+              <Badge
+                badgeContent={
+                  cartItems.data[0] && !cartItems.error
+                    ? cartItems.data.length
+                    : 0
+                }
+                color="primary"
+              >
+                <ShoppingCartIcon
+                  sx={{ color: pathname === "/" ? "#fff" : "#000" }}
+                />
+              </Badge>
+            }
+          />
 
-        <Stack direction="row" alignItems="center" gap="20px">
-          <Badge
-            badgeContent={
-              cartItems.data[0] && !cartItems.error ? cartItems.data.length : 0
+          <BadgeDrawer
+            path="/favourites"
+            items={
+              favourites.data[0] && !favourites.error ? favourites.data : []
             }
-            color="primary"
-          >
-            <ShoppingCartIcon
-              sx={{ color: pathname === "/" ? "#fff" : "#000" }}
-            />
-          </Badge>
-          <Badge
-            badgeContent={
-              favourites.data[0] && !favourites.error
-                ? favourites.data.length
-                : 0
+            badge={
+              <Badge
+                badgeContent={
+                  favourites.data[0] && !favourites.error
+                    ? favourites.data.length
+                    : 0
+                }
+                color="primary"
+              >
+                <FavoriteIcon
+                  sx={{ color: pathname === "/" ? "#fff" : "#000" }}
+                />
+              </Badge>
             }
-            color="primary"
-          >
-            <FavoriteIcon sx={{ color: pathname === "/" ? "#fff" : "#000" }} />
-          </Badge>
+          />
+          <ProfileMenu />
+          {/* Mobile Nav Drawer */}
+          <NavDrawer />
         </Stack>
-      </Box>
+      </Stack>
     </Box>
   );
 };

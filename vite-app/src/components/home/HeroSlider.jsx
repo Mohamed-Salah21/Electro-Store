@@ -11,7 +11,7 @@ const HeroSlider = () => {
         justifyContent: "center",
         height: "70vh",
         mb: "40px",
-        bgcolor: colors.main,
+        // bgcolor: colors.main,
         position: "relative",
       }}
     >

@@ -15,7 +15,6 @@ export const registerUser = async (req: Request, res: Response) => {
   const newUser = new User({
     ...req.body,
     password: hashSync(req.body.password, 10),
-    role: "user",
   });
   newUser.save();
   res.status(200).send({
@@ -48,6 +47,7 @@ export const loginUser = async (req: Request, res: Response) => {
       res: {
         message: "You are logged in successfully",
         token,
+        user,
       },
     });
 };

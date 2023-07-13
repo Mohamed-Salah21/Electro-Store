@@ -11,7 +11,8 @@ export const useFetchFavouritesItems = () => {
   useEffect(() => {
     if (data && !error) {
       setFavourites({
-        data: [...data.res.favourites],
+        data: data.res.favourites,
+        // data: [...data?.res.favourites],
         error: "",
       });
     } else {
